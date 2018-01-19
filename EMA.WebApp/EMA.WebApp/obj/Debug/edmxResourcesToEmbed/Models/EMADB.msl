@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EMADBModelStoreContainer" CdmEntityContainer="EMADBEntities">
+    <EntitySetMapping Name="Application">
+      <EntityTypeMapping TypeName="EMADBModel.Application">
+        <MappingFragment StoreEntitySet="Application">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Acronym" ColumnName="Acronym" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="SecurityModelUrl" ColumnName="SecurityModelUrl" />
+          <ScalarProperty Name="CartaUrl" ColumnName="CartaUrl" />
+          <ScalarProperty Name="RiskAssessmentUrl" ColumnName="RiskAssessmentUrl" />
+          <ScalarProperty Name="SplunkUrl" ColumnName="SplunkUrl" />
+          <ScalarProperty Name="Core" ColumnName="Core" />
+          <ScalarProperty Name="AppTier" ColumnName="AppTier" />
+          <ScalarProperty Name="UserCount" ColumnName="UserCount" />
+          <ScalarProperty Name="LicenseType" ColumnName="LicenseType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdVendor" ColumnName="IdVendor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationDependencies">
+      <EntityTypeMapping TypeName="EMADBModel.ApplicationDependencies">
+        <MappingFragment StoreEntitySet="ApplicationDependencies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+          <ScalarProperty Name="IdDependencies" ColumnName="IdDependencies" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationSite">
+      <EntityTypeMapping TypeName="EMADBModel.ApplicationSite">
+        <MappingFragment StoreEntitySet="ApplicationSite">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+          <ScalarProperty Name="IdSite" ColumnName="IdSite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Database">
+      <EntityTypeMapping TypeName="EMADBModel.Database">
+        <MappingFragment StoreEntitySet="Database">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Schema" ColumnName="Schema" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="IdServer" ColumnName="IdServer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dependencies">
+      <EntityTypeMapping TypeName="EMADBModel.Dependencies">
+        <MappingFragment StoreEntitySet="Dependencies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="EMADBModel.Groups">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Environment" ColumnName="Environment" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LanguageCode">
+      <EntityTypeMapping TypeName="EMADBModel.LanguageCode">
+        <MappingFragment StoreEntitySet="LanguageCode">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Framework" ColumnName="Framework" />
+          <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Server">
+      <EntityTypeMapping TypeName="EMADBModel.Server">
+        <MappingFragment StoreEntitySet="Server">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="OS" ColumnName="OS" />
+          <ScalarProperty Name="Environment" ColumnName="Environment" />
+          <ScalarProperty Name="Memory" ColumnName="Memory" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Site">
+      <EntityTypeMapping TypeName="EMADBModel.Site">
+        <MappingFragment StoreEntitySet="Site">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Custodian" ColumnName="Custodian" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteGroup">
+      <EntityTypeMapping TypeName="EMADBModel.SiteGroup">
+        <MappingFragment StoreEntitySet="SiteGroup">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdSite" ColumnName="IdSite" />
+          <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteServer">
+      <EntityTypeMapping TypeName="EMADBModel.SiteServer">
+        <MappingFragment StoreEntitySet="SiteServer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdSite" ColumnName="IdSite" />
+          <ScalarProperty Name="IdServer" ColumnName="IdServer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statics">
+      <EntityTypeMapping TypeName="EMADBModel.Statics">
+        <MappingFragment StoreEntitySet="Statics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TerminalServer">
+      <EntityTypeMapping TypeName="EMADBModel.TerminalServer">
+        <MappingFragment StoreEntitySet="TerminalServer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TsName" ColumnName="TsName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IdServer" ColumnName="IdServer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vendor">
+      <EntityTypeMapping TypeName="EMADBModel.Vendor">
+        <MappingFragment StoreEntitySet="Vendor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Acronym" ColumnName="Acronym" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="VendorUrl" ColumnName="VendorUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VendorContacts">
+      <EntityTypeMapping TypeName="EMADBModel.VendorContacts">
+        <MappingFragment StoreEntitySet="VendorContacts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="IdVendor" ColumnName="IdVendor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

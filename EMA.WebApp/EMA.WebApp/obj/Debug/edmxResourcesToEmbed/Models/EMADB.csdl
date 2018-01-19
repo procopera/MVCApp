@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Acronym" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Version" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SecurityModelUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CartaUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RiskAssessmentUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="SplunkUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Core" Type="Int32" />
+    <Property Name="AppTier" Type="Int32" />
+    <Property Name="UserCount" Type="Int32" />
+    <Property Name="LicenseType" Type="Int32" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdVendor" Type="Int32" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_Application_ToVendor" FromRole="Application" ToRole="Vendor" />
+    <NavigationProperty Name="ApplicationDependencies" Relationship="Self.FK_ApplicationDependencies_ToApplication" FromRole="Application" ToRole="ApplicationDependencies" />
+    <NavigationProperty Name="ApplicationSite" Relationship="Self.FK_ApplicationSite_ToApplication" FromRole="Application" ToRole="ApplicationSite" />
+    <NavigationProperty Name="LanguageCode" Relationship="Self.FK_LanguageCode_ToApplication" FromRole="Application" ToRole="LanguageCode" />
+  </EntityType>
+  <EntityType Name="ApplicationDependencies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdApplication" Type="Int32" Nullable="false" />
+    <Property Name="IdDependencies" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Application" Relationship="Self.FK_ApplicationDependencies_ToApplication" FromRole="ApplicationDependencies" ToRole="Application" />
+    <NavigationProperty Name="Dependencies" Relationship="Self.FK_ApplicationDependencies_ToDependencies" FromRole="ApplicationDependencies" ToRole="Dependencies" />
+  </EntityType>
+  <EntityType Name="ApplicationSite">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdApplication" Type="Int32" Nullable="false" />
+    <Property Name="IdSite" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Application" Relationship="Self.FK_ApplicationSite_ToApplication" FromRole="ApplicationSite" ToRole="Application" />
+    <NavigationProperty Name="Site" Relationship="Self.FK_ApplicationSite_ToSite" FromRole="ApplicationSite" ToRole="Site" />
+  </EntityType>
+  <EntityType Name="Database">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Version" Type="Int32" Nullable="false" />
+    <Property Name="Schema" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="IdServer" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Server" Relationship="Self.FK_Database_ToServer" FromRole="Database" ToRole="Server" />
+  </EntityType>
+  <EntityType Name="Dependencies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ApplicationDependencies" Relationship="Self.FK_ApplicationDependencies_ToDependencies" FromRole="Dependencies" ToRole="ApplicationDependencies" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Environment" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SiteGroup" Relationship="Self.FK_SiteGroup_ToGroup" FromRole="Groups" ToRole="SiteGroup" />
+  </EntityType>
+  <EntityType Name="LanguageCode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Framework" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdApplication" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Application" Relationship="Self.FK_LanguageCode_ToApplication" FromRole="LanguageCode" ToRole="Application" />
+  </EntityType>
+  <EntityType Name="Server">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="OS" Type="Int32" Nullable="false" />
+    <Property Name="Environment" Type="Int32" Nullable="false" />
+    <Property Name="Memory" Type="Int32" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Database" Relationship="Self.FK_Database_ToServer" FromRole="Server" ToRole="Database" />
+    <NavigationProperty Name="SiteServer" Relationship="Self.FK_SiteServer_ToServer" FromRole="Server" ToRole="SiteServer" />
+    <NavigationProperty Name="TerminalServer" Relationship="Self.FK_TerminalServer_ToServer" FromRole="Server" ToRole="TerminalServer" />
+  </EntityType>
+  <EntityType Name="Site">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Custodian" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Admin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ApplicationSite" Relationship="Self.FK_ApplicationSite_ToSite" FromRole="Site" ToRole="ApplicationSite" />
+    <NavigationProperty Name="SiteGroup" Relationship="Self.FK_SiteGroup_ToSite" FromRole="Site" ToRole="SiteGroup" />
+    <NavigationProperty Name="SiteServer" Relationship="Self.FK_SiteServer_ToSite" FromRole="Site" ToRole="SiteServer" />
+  </EntityType>
+  <EntityType Name="SiteGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSite" Type="Int32" Nullable="false" />
+    <Property Name="IdGroup" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Groups" Relationship="Self.FK_SiteGroup_ToGroup" FromRole="SiteGroup" ToRole="Groups" />
+    <NavigationProperty Name="Site" Relationship="Self.FK_SiteGroup_ToSite" FromRole="SiteGroup" ToRole="Site" />
+  </EntityType>
+  <EntityType Name="SiteServer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSite" Type="Int32" Nullable="false" />
+    <Property Name="IdServer" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Server" Relationship="Self.FK_SiteServer_ToServer" FromRole="SiteServer" ToRole="Server" />
+    <NavigationProperty Name="Site" Relationship="Self.FK_SiteServer_ToSite" FromRole="SiteServer" ToRole="Site" />
+  </EntityType>
+  <EntityType Name="Statics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdType" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TerminalServer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TsName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="IdServer" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Server" Relationship="Self.FK_TerminalServer_ToServer" FromRole="TerminalServer" ToRole="Server" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Acronym" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VendorName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VendorUrl" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Application" Relationship="Self.FK_Application_ToVendor" FromRole="Vendor" ToRole="Application" />
+    <NavigationProperty Name="VendorContacts" Relationship="Self.FK_VendorContacts_ToVendor" FromRole="Vendor" ToRole="VendorContacts" />
+  </EntityType>
+  <EntityType Name="VendorContacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdVendor" Type="Int32" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_VendorContacts_ToVendor" FromRole="VendorContacts" ToRole="Vendor" />
+  </EntityType>
+  <Association Name="FK_Application_ToVendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="0..1" />
+    <End Role="Application" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Application">
+        <PropertyRef Name="IdVendor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationDependencies_ToApplication">
+    <End Role="Application" Type="Self.Application" Multiplicity="1" />
+    <End Role="ApplicationDependencies" Type="Self.ApplicationDependencies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationDependencies">
+        <PropertyRef Name="IdApplication" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationSite_ToApplication">
+    <End Role="Application" Type="Self.Application" Multiplicity="1" />
+    <End Role="ApplicationSite" Type="Self.ApplicationSite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationSite">
+        <PropertyRef Name="IdApplication" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LanguageCode_ToApplication">
+    <End Role="Application" Type="Self.Application" Multiplicity="1" />
+    <End Role="LanguageCode" Type="Self.LanguageCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LanguageCode">
+        <PropertyRef Name="IdApplication" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationDependencies_ToDependencies">
+    <End Role="Dependencies" Type="Self.Dependencies" Multiplicity="1" />
+    <End Role="ApplicationDependencies" Type="Self.ApplicationDependencies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dependencies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationDependencies">
+        <PropertyRef Name="IdDependencies" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationSite_ToSite">
+    <End Role="Site" Type="Self.Site" Multiplicity="1" />
+    <End Role="ApplicationSite" Type="Self.ApplicationSite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationSite">
+        <PropertyRef Name="IdSite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Database_ToServer">
+    <End Role="Server" Type="Self.Server" Multiplicity="1" />
+    <End Role="Database" Type="Self.Database" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Server">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Database">
+        <PropertyRef Name="IdServer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteGroup_ToGroup">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+    <End Role="SiteGroup" Type="Self.SiteGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteGroup">
+        <PropertyRef Name="IdGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteServer_ToServer">
+    <End Role="Server" Type="Self.Server" Multiplicity="1" />
+    <End Role="SiteServer" Type="Self.SiteServer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Server">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteServer">
+        <PropertyRef Name="IdServer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TerminalServer_ToServer">
+    <End Role="Server" Type="Self.Server" Multiplicity="1" />
+    <End Role="TerminalServer" Type="Self.TerminalServer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Server">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TerminalServer">
+        <PropertyRef Name="IdServer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteGroup_ToSite">
+    <End Role="Site" Type="Self.Site" Multiplicity="1" />
+    <End Role="SiteGroup" Type="Self.SiteGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteGroup">
+        <PropertyRef Name="IdSite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteServer_ToSite">
+    <End Role="Site" Type="Self.Site" Multiplicity="1" />
+    <End Role="SiteServer" Type="Self.SiteServer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteServer">
+        <PropertyRef Name="IdSite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorContacts_ToVendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="0..1" />
+    <End Role="VendorContacts" Type="Self.VendorContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VendorContacts">
+        <PropertyRef Name="IdVendor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EMADBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Application" EntityType="Self.Application" />
+    <EntitySet Name="ApplicationDependencies" EntityType="Self.ApplicationDependencies" />
+    <EntitySet Name="ApplicationSite" EntityType="Self.ApplicationSite" />
+    <EntitySet Name="Database" EntityType="Self.Database" />
+    <EntitySet Name="Dependencies" EntityType="Self.Dependencies" />
+    <EntitySet Name="Groups" EntityType="Self.Groups" />
+    <EntitySet Name="LanguageCode" EntityType="Self.LanguageCode" />
+    <EntitySet Name="Server" EntityType="Self.Server" />
+    <EntitySet Name="Site" EntityType="Self.Site" />
+    <EntitySet Name="SiteGroup" EntityType="Self.SiteGroup" />
+    <EntitySet Name="SiteServer" EntityType="Self.SiteServer" />
+    <EntitySet Name="Statics" EntityType="Self.Statics" />
+    <EntitySet Name="TerminalServer" EntityType="Self.TerminalServer" />
+    <EntitySet Name="Vendor" EntityType="Self.Vendor" />
+    <EntitySet Name="VendorContacts" EntityType="Self.VendorContacts" />
+    <AssociationSet Name="FK_Application_ToVendor" Association="Self.FK_Application_ToVendor">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="Application" EntitySet="Application" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationDependencies_ToApplication" Association="Self.FK_ApplicationDependencies_ToApplication">
+      <End Role="Application" EntitySet="Application" />
+      <End Role="ApplicationDependencies" EntitySet="ApplicationDependencies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationSite_ToApplication" Association="Self.FK_ApplicationSite_ToApplication">
+      <End Role="Application" EntitySet="Application" />
+      <End Role="ApplicationSite" EntitySet="ApplicationSite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LanguageCode_ToApplication" Association="Self.FK_LanguageCode_ToApplication">
+      <End Role="Application" EntitySet="Application" />
+      <End Role="LanguageCode" EntitySet="LanguageCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationDependencies_ToDependencies" Association="Self.FK_ApplicationDependencies_ToDependencies">
+      <End Role="Dependencies" EntitySet="Dependencies" />
+      <End Role="ApplicationDependencies" EntitySet="ApplicationDependencies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationSite_ToSite" Association="Self.FK_ApplicationSite_ToSite">
+      <End Role="Site" EntitySet="Site" />
+      <End Role="ApplicationSite" EntitySet="ApplicationSite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Database_ToServer" Association="Self.FK_Database_ToServer">
+      <End Role="Server" EntitySet="Server" />
+      <End Role="Database" EntitySet="Database" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteGroup_ToGroup" Association="Self.FK_SiteGroup_ToGroup">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="SiteGroup" EntitySet="SiteGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteServer_ToServer" Association="Self.FK_SiteServer_ToServer">
+      <End Role="Server" EntitySet="Server" />
+      <End Role="SiteServer" EntitySet="SiteServer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TerminalServer_ToServer" Association="Self.FK_TerminalServer_ToServer">
+      <End Role="Server" EntitySet="Server" />
+      <End Role="TerminalServer" EntitySet="TerminalServer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteGroup_ToSite" Association="Self.FK_SiteGroup_ToSite">
+      <End Role="Site" EntitySet="Site" />
+      <End Role="SiteGroup" EntitySet="SiteGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteServer_ToSite" Association="Self.FK_SiteServer_ToSite">
+      <End Role="Site" EntitySet="Site" />
+      <End Role="SiteServer" EntitySet="SiteServer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorContacts_ToVendor" Association="Self.FK_VendorContacts_ToVendor">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="VendorContacts" EntitySet="VendorContacts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

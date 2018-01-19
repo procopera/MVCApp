@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0ddd61349b64781893ff13601a018f2" Name="Diagram1">
+        <EntityTypeShape EntityType="EMADBModel.Application" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.ApplicationDependencies" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.ApplicationSite" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.Database" Width="1.5" PointX="10" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.Dependencies" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.Groups" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.LanguageCode" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.Server" Width="1.5" PointX="7.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.Site" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.SiteGroup" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.SiteServer" Width="1.5" PointX="10" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.Statics" Width="1.5" PointX="7.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.TerminalServer" Width="1.5" PointX="10" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.Vendor" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMADBModel.VendorContacts" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="EMADBModel.FK_Application_ToVendor" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_ApplicationDependencies_ToApplication" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_ApplicationSite_ToApplication" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_LanguageCode_ToApplication" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_ApplicationDependencies_ToDependencies" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_ApplicationSite_ToSite" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_Database_ToServer" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_SiteGroup_ToGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_SiteServer_ToServer" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_TerminalServer_ToServer" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_SiteGroup_ToSite" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_SiteServer_ToSite" ManuallyRouted="false" />
+        <AssociationConnector Association="EMADBModel.FK_VendorContacts_ToVendor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
